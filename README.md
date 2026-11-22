@@ -151,7 +151,7 @@ Ask only for the scopes you need. The user sees each one on the authorization pa
 | `payouts:write` | Resend a payout's webhook to the merchant |
 | `payouts:approve` | Approve and reject payouts awaiting approval, and receive their webhooks |
 
-Scopes set the most your app can do. What it can actually do also depends on the user's role in each organization. For example, a token with `payouts:approve` can approve payouts only in organizations where the user is an owner or admin.
+Scopes set the most your app can do. What it can actually do also depends on the user's role in each organization. For example, a token with `payouts:approve` can approve payouts only in organizations where the user is an owner or admin. Each organization from `GET /organizations` includes the user's `role` and `permissions` in it, so your app can tell in advance what will be allowed.
 
 ## Making requests
 
@@ -243,11 +243,25 @@ Scope: `organizations:read`. Lists every organization the user belongs to.
       "name": "Acme Ltd",
       "slug": "acme-ltd",
       "is_personal": false,
+      "role": "admin",
+      "permissions": ["payout:approve", "webhook:resend"],
       "created_at": "2026-09-01T08:00:00+00:00"
     }
   ]
 }
 ```
+
+- `role` is the user's role in the organization: `owner`, `admin`, `developer` or `member`.
+- `permissions` lists what the user may do there through this API:
+
+  | Permission | Lets the user | Roles that have it |
+    | --- | --- | --- |
+  | `payout:approve` | Approve and reject payouts | Owner, admin |
+  | `webhook:resend` | Resend an order's or payout's webhook to the merchant | Owner, admin, developer |
+
+- Decide what to offer from `permissions`, not from `role`. Which permissions each role has may change, and new permissions may be added; ignore any you don't know.
+- Both describe the user, not your token. Your app still needs the matching scope, such as `payouts:approve`.
+- They can change at any time, for example when an owner changes the user's role. Fetch organizations again from time to time, and handle a 403 even when `permissions` allowed the action.
 
 #### `GET /organizations/{organization}`
 
@@ -257,14 +271,14 @@ Scope: `organizations:read`. Returns one organization, in the same shape as an i
 
 #### `GET /organizations/{organization}/accounts`
 
-Scope: `accounts:read`. Lists the organization's accounts, newest first. Filter by currency with `?filter[currency_code]=MYR`.
+Scope: `accounts:read`. Lists the organization's accounts, newest first. Filter by currency with `?filter[currency_code]=VND`.
 
 ```json
 {
   "data": [
     {
       "id": 31,
-      "currency_code": "MYR",
+      "currency_code": "VND",
       "balance": "1520.75",
       "frozen_balance": "0.00",
       "low_balance_threshold": "500.00",
@@ -339,7 +353,7 @@ Look up a payout by Oceanpay's reference (`transfer_no`) or by the merchant's re
     "amount": "10.25",
     "total_fees": "0.50",
     "total_amount": "10.75",
-    "currency_code": "MYR",
+    "currency_code": "VND",
     "payee_name": "Recipient",
     "payee_account_last4": "6789",
     "status": 6,
@@ -398,6 +412,7 @@ Your app receives an organization's event when at least one of its members autho
 | `account.low_balance` | `accounts:read` | Owner or admin |
 
 - Your app gets each event once, however many of the organization's members authorized it.
+- To pass an event on to your users, send it only to those who qualify: `payout:approve` in `permissions` for the payout events, and a `role` of `owner` or `admin` for `account.low_balance`.
 - Your app gets every event type it qualifies for. Answer 2xx and ignore any type you don't use.
 - The user's authorization counts while its access token is valid, or while its refresh token can still renew it.
 
@@ -439,7 +454,7 @@ X-Signature: t=1795304519,v1=5257a869e7ecebeda32affa62cdca3fa51cad7e77a0e56ff536
       "amount": "10.25",
       "total_fees": "0.50",
       "total_amount": "10.75",
-      "currency_code": "MYR",
+      "currency_code": "VND",
       "payee_name": "Recipient",
       "payee_account_last4": "6789",
       "status": 6,
@@ -488,7 +503,7 @@ X-Signature: t=1795304519,v1=5257a869e7ecebeda32affa62cdca3fa51cad7e77a0e56ff536
     "threshold": "500.00",
     "object": {
       "id": 31,
-      "currency_code": "MYR",
+      "currency_code": "VND",
       "balance": "400.00",
       "frozen_balance": "0.00",
       "low_balance_threshold": "500.00",
