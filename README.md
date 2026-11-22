@@ -275,17 +275,17 @@ Scope: `accounts:read`. Lists the organization's accounts, newest first. Filter 
 
 ```json
 {
-    "data": [
-        {
-            "id": 31,
-            "currency_code": "VND",
-            "balance": "1520.75",
-            "frozen_balance": "0.00",
-            "low_balance_threshold": "500.00",
-            "status": "active",
-            "created_at": "2026-09-01T08:00:00+00:00"
-        }
-    ]
+  "data": [
+    {
+      "id": 31,
+      "currency_code": "VND",
+      "balance": "1520.75",
+      "frozen_balance": "0.00",
+      "low_balance_threshold": "500.00",
+      "status": "active",
+      "created_at": "2026-09-01T08:00:00+00:00"
+    }
+  ]
 }
 ```
 
@@ -302,17 +302,17 @@ Look up an order by Oceanpay's reference (`trade_no`) or by the merchant's own r
 
 ```json
 {
-    "data": {
-        "trade_no": "01jd2x...",
-        "out_trade_no": "INV-2026-0042",
-        "amount": "50000.00",
-        "paid_amount": "50000.00",
-        "currency_code": "VND",
-        "subject": "Order #42",
-        "status": 1,
-        "paid_at": "2026-11-13T09:30:00+00:00",
-        "created_at": "2026-11-13T09:00:00+00:00"
-    }
+  "data": {
+    "trade_no": "01jd2x...",
+    "out_trade_no": "INV-2026-0042",
+    "amount": "50000.00",
+    "paid_amount": "50000.00",
+    "currency_code": "VND",
+    "subject": "Order #42",
+    "status": 1,
+    "paid_at": "2026-11-13T09:30:00+00:00",
+    "created_at": "2026-11-13T09:00:00+00:00"
+  }
 }
 ```
 
@@ -320,13 +320,13 @@ Look up an order by Oceanpay's reference (`trade_no`) or by the merchant's own r
 
 ```json
 {
-    "data": {
-        "id": "9d6c1e9a-...",
-        "event_type": "order.paid",
-        "url": "https://merchant.example/webhooks",
-        "status": "pending",
-        "created_at": "2026-11-22T10:00:00+00:00"
-    }
+  "data": {
+    "id": "9d6c1e9a-...",
+    "event_type": "order.paid",
+    "url": "https://merchant.example/webhooks",
+    "status": "pending",
+    "created_at": "2026-11-22T10:00:00+00:00"
+  }
 }
 ```
 
@@ -347,21 +347,21 @@ Look up a payout by Oceanpay's reference (`transfer_no`) or by the merchant's re
 
 ```json
 {
-    "data": {
-        "transfer_no": "01jd2y...",
-        "out_transfer_no": "PAYOUT/2026/001",
-        "amount": "10.25",
-        "total_fees": "0.50",
-        "total_amount": "10.75",
-        "currency_code": "VND",
-        "payee_name": "Recipient",
-        "payee_account_last4": "6789",
-        "status": 6,
-        "approval_expires_at": "2026-11-23T10:00:00+00:00",
-        "approval_decided_at": null,
-        "paid_at": null,
-        "created_at": "2026-11-22T10:00:00+00:00"
-    }
+  "data": {
+    "transfer_no": "01jd2y...",
+    "out_transfer_no": "PAYOUT/2026/001",
+    "amount": "10.25",
+    "total_fees": "0.50",
+    "total_amount": "10.75",
+    "currency_code": "VND",
+    "payee_name": "Recipient",
+    "payee_account_last4": "6789",
+    "status": 6,
+    "approval_expires_at": "2026-11-23T10:00:00+00:00",
+    "approval_decided_at": null,
+    "paid_at": null,
+    "created_at": "2026-11-22T10:00:00+00:00"
+  }
 }
 ```
 
@@ -440,30 +440,30 @@ X-Signature: t=1795304519,v1=5257a869e7ecebeda32affa62cdca3fa51cad7e77a0e56ff536
 
 ```json
 {
-    "id": "evt_01jd3b2c4d5e6f7g8h9j0k1m2n",
-    "type": "payout.approval_requested",
-    "created_at": "2026-11-22T10:00:00+00:00",
-    "organization": {
-        "id": 12,
-        "slug": "acme-ltd"
-    },
-    "data": {
-        "object": {
-            "transfer_no": "01jd2y...",
-            "out_transfer_no": "PAYOUT/2026/001",
-            "amount": "10.25",
-            "total_fees": "0.50",
-            "total_amount": "10.75",
-            "currency_code": "VND",
-            "payee_name": "Recipient",
-            "payee_account_last4": "6789",
-            "status": 6,
-            "approval_expires_at": "2026-11-23T10:00:00+00:00",
-            "approval_decided_at": null,
-            "paid_at": null,
-            "created_at": "2026-11-22T10:00:00+00:00"
-        }
+  "id": "evt_01jd3b2c4d5e6f7g8h9j0k1m2n",
+  "type": "payout.approval_requested",
+  "created_at": "2026-11-22T10:00:00+00:00",
+  "organization": {
+    "id": 12,
+    "slug": "acme-ltd"
+  },
+  "data": {
+    "object": {
+      "transfer_no": "01jd2y...",
+      "out_transfer_no": "PAYOUT/2026/001",
+      "amount": "10.25",
+      "total_fees": "0.50",
+      "total_amount": "10.75",
+      "currency_code": "VND",
+      "payee_name": "Recipient",
+      "payee_account_last4": "6789",
+      "status": 6,
+      "approval_expires_at": "2026-11-23T10:00:00+00:00",
+      "approval_decided_at": null,
+      "paid_at": null,
+      "created_at": "2026-11-22T10:00:00+00:00"
     }
+  }
 }
 ```
 
@@ -477,19 +477,19 @@ X-Signature: t=1795304519,v1=5257a869e7ecebeda32affa62cdca3fa51cad7e77a0e56ff536
 
 ```json
 {
-    "id": "evt_01jd3c...",
-    "type": "payout.approval_decided",
-    "created_at": "2026-11-22T10:05:00+00:00",
-    "organization": { "id": 12, "slug": "acme-ltd" },
-    "data": {
-        "outcome": "approved",
-        "object": {
-            "transfer_no": "01jd2y...",
-            "status": 0,
-            "approval_decided_at": "2026-11-22T10:05:00+00:00",
-            "...": "..."
-        }
+  "id": "evt_01jd3c...",
+  "type": "payout.approval_decided",
+  "created_at": "2026-11-22T10:05:00+00:00",
+  "organization": { "id": 12, "slug": "acme-ltd" },
+  "data": {
+    "outcome": "approved",
+    "object": {
+      "transfer_no": "01jd2y...",
+      "status": 0,
+      "approval_decided_at": "2026-11-22T10:05:00+00:00",
+      "...": "..."
     }
+  }
 }
 ```
 
@@ -499,23 +499,23 @@ X-Signature: t=1795304519,v1=5257a869e7ecebeda32affa62cdca3fa51cad7e77a0e56ff536
 
 ```json
 {
-    "id": "evt_01jd3d...",
-    "type": "account.low_balance",
-    "created_at": "2026-11-22T11:00:00+00:00",
-    "organization": { "id": 12, "slug": "acme-ltd" },
-    "data": {
-        "balance": "400.00",
-        "threshold": "500.00",
-        "object": {
-            "id": 31,
-            "currency_code": "VND",
-            "balance": "400.00",
-            "frozen_balance": "0.00",
-            "low_balance_threshold": "500.00",
-            "status": "active",
-            "created_at": "2026-09-01T08:00:00+00:00"
-        }
+  "id": "evt_01jd3d...",
+  "type": "account.low_balance",
+  "created_at": "2026-11-22T11:00:00+00:00",
+  "organization": { "id": 12, "slug": "acme-ltd" },
+  "data": {
+    "balance": "400.00",
+    "threshold": "500.00",
+    "object": {
+      "id": 31,
+      "currency_code": "VND",
+      "balance": "400.00",
+      "frozen_balance": "0.00",
+      "low_balance_threshold": "500.00",
+      "status": "active",
+      "created_at": "2026-09-01T08:00:00+00:00"
     }
+  }
 }
 ```
 
