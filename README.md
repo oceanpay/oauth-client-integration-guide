@@ -255,7 +255,7 @@ Scope: `organizations:read`. Lists every organization the user belongs to.
 - `permissions` lists what the user may do there through this API:
 
   | Permission       | Lets the user                                         | Roles that have it      |
-      | ---------------- | ----------------------------------------------------- | ----------------------- |
+  | ---------------- | ----------------------------------------------------- | ----------------------- |
   | `payout:approve` | Approve and reject payouts                            | Owner, admin            |
   | `webhook:resend` | Resend an order's or payout's webhook to the merchant | Owner, admin, developer |
 
