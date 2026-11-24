@@ -35,11 +35,11 @@ Oceanpay registers OAuth clients for you. Contact us with:
 
 You receive:
 
-| Credential      | Used for                               | Notes                                  |
-| --------------- | -------------------------------------- | -------------------------------------- |
-| `client_id`     | Every OAuth request                    | A UUID.                                |
-| `client_secret` | Exchanging codes and refreshing tokens | Confidential clients only. Shown once. |
-| Webhook secret  | Verifying webhook signatures           | Starts with `whsec_`. Shown once.      |
+| Credential       | Used for                               | Notes                                  |
+| ---------------- | -------------------------------------- | -------------------------------------- |
+| `client_id`      | Every OAuth request                    | A UUID.                                |
+| `client_secret`  | Exchanging codes and refreshing tokens | Confidential clients only. Shown once. |
+| `webhook_secret` | Verifying webhook signatures           | Starts with `whsec_`. Shown once.      |
 
 Store both secrets on your server, never in a mobile app or browser code. To change your webhook URL, contact us. If a secret leaks, ask us to rotate it. A rotated webhook secret takes effect immediately: every webhook after the rotation is signed with the new secret only.
 
